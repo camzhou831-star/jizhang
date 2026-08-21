@@ -1,0 +1,34 @@
+appId: com.camzhou.jizhang
+productName: 简账
+directories:
+  buildResources: resources
+  output: release
+files:
+  - out/**
+  - package.json
+  - '!**/*.map'
+asarUnpack:
+  - resources/**
+win:
+  icon: resources/icon.ico
+  target:
+    - target: nsis
+      arch: [x64]
+    - target: portable
+      arch: [x64]
+  executableName: jizhang
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: always
+  createStartMenuShortcut: true
+  shortcutName: 简账
+  artifactName: 简账-安装包-${version}.${ext}
+portable:
+  artifactName: 简账-免安装-${version}.${ext}
+mac:
+  icon: resources/icon.png
+  target: [dmg]
+  artifactName: 简账-${version}-${arch}.${ext}
+npmRebuild: false
