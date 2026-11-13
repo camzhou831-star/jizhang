@@ -24,11 +24,11 @@ nsis:
   createDesktopShortcut: always
   createStartMenuShortcut: true
   shortcutName: 简账
-  artifactName: 简账-安装包-${version}.${ext}
+  artifactName: jizhang-setup-${version}.${ext}
 portable:
-  artifactName: 简账-免安装-${version}.${ext}
+  artifactName: jizhang-portable-${version}.${ext}
 mac:
   icon: resources/icon.png
   target: [dmg]
-  artifactName: 简账-${version}-${arch}.${ext}
+  artifactName: jizhang-${version}-${arch}.${ext}
 npmRebuild: false

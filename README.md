@@ -1,6 +1,21 @@
 # 简账 —— 本地财务记账软件（小企业会计准则）
 
+[![CI](https://github.com/camzhou831-star/jizhang/actions/workflows/ci.yml/badge.svg)](https://github.com/camzhou831-star/jizhang/actions/workflows/ci.yml)
+
+> **Jizhang** is an offline desktop bookkeeping app for small businesses in China (Accounting Standards for Small Enterprises).
+> Enter vouchers and get the trial balance, general ledger, balance sheet, income statement and cash-flow statement automatically.
+> No server, no database to install: each set of books is a single SQLite file. Built with Electron, Vue 3 and sql.js. MIT licensed.
+
 离线单机、免数据库、双击安装即用的财务记账软件：录入记账凭证 → 自动生成科目余额表 / 总账 / 明细账 / 资产负债表 / 利润表 / 现金流量表。
+
+## 界面
+以下截图使用虚构的演示账套「示范商贸有限公司」。
+
+| 工作台 | 凭证录入 |
+| :---: | :---: |
+| ![工作台](docs/screenshots/dashboard.png) | ![凭证录入](docs/screenshots/voucher.png) |
+| **科目余额表** | **资产负债表** |
+| ![科目余额表](docs/screenshots/trial-balance.png) | ![资产负债表](docs/screenshots/balance-sheet.png) |
 
 ## 下载
 去 [Releases](https://github.com/camzhou831-star/jizhang/releases) 下载：
@@ -28,7 +43,7 @@ pnpm install        # 首次
 pnpm dev            # 开发模式
 pnpm test           # 记账引擎单元测试（试算/三表/结转/结账）
 pnpm typecheck
-pnpm build:win      # 产出 release/简账-安装包-x.y.z.exe 与 简账-免安装-x.y.z.exe
+pnpm build:win      # 产出 release/jizhang-setup-x.y.z.exe 与 jizhang-portable-x.y.z.exe
 pnpm build:mac      # 产出 dmg
 ```
 技术栈：Electron 33 + Vue 3 + Element Plus + sql.js（纯 WASM SQLite，无原生依赖，可在 Mac 上直接交叉打 Windows 包）。
@@ -41,3 +56,6 @@ src/main/services/           accounts 科目 · vouchers 凭证 · ledger 账簿
 src/renderer/src/views/      各页面
 test/engine.test.ts          引擎测试
 ```
+
+## 许可
+[MIT](LICENSE)
