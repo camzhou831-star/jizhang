@@ -8,6 +8,15 @@
 
 离线单机、免数据库、双击安装即用的财务记账软件：录入记账凭证 → 自动生成科目余额表 / 总账 / 明细账 / 资产负债表 / 利润表 / 现金流量表。
 
+## 界面
+以下截图使用虚构的演示账套「示范商贸有限公司」。
+
+| 工作台 | 凭证录入 |
+| :---: | :---: |
+| ![工作台](docs/screenshots/dashboard.png) | ![凭证录入](docs/screenshots/voucher.png) |
+| **科目余额表** | **资产负债表** |
+| ![科目余额表](docs/screenshots/trial-balance.png) | ![资产负债表](docs/screenshots/balance-sheet.png) |
+
 ## 下载
 去 [Releases](https://github.com/camzhou831-star/jizhang/releases) 下载：
 - `jizhang-setup-x.y.z.exe` —— Windows 安装包（推荐）
