@@ -5,7 +5,10 @@ import { bookState } from './store'
 
 const route = useRoute()
 const groups = [
-  { label: '概览', items: [{ path: '/dashboard', label: '工作台', icon: 'Odometer' }] },
+  { label: '概览', items: [
+    { path: '/dashboard', label: '工作台', icon: 'Odometer' },
+    { path: '/assistant', label: 'AI 助手', icon: 'ChatDotRound' }
+  ] },
   { label: '基础设置', items: [
     { path: '/books', label: '账套管理', icon: 'Files' },
     { path: '/accounts', label: '会计科目', icon: 'Collection' },

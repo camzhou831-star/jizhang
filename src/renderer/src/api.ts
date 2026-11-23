@@ -3,6 +3,15 @@ import type {
   LedgerRow, PeriodInfo, Voucher, VoucherListItem
 } from '@shared/types'
 
+export interface AiDraft {
+  id: string
+  date: string
+  total: number
+  lines: { seq: number; summary: string; account_code: string; account_name: string; debit: number; credit: number }[]
+}
+export interface AiStep { tool: string; args: Record<string, unknown>; ok: boolean; result: string; ms: number }
+export interface AiChatResult { reply: string; steps: AiStep[]; drafts: AiDraft[]; rounds: number; usage: { prompt: number; completion: number } }
+
 const call = <T>(ch: string, ...args: unknown[]): Promise<T> => window.api.invoke<T>(ch, ...args)
 
 export const api = {
@@ -56,6 +65,13 @@ export const api = {
     carry: (period: string, maker: string) => call<{ id: number; num: number; lines: number }>('closing:carry', period, maker),
     close: (period: string) => call<void>('closing:close', period),
     reopen: (period: string) => call<void>('closing:reopen', period)
+  },
+  ai: {
+    config: () => call<{ baseUrl: string; model: string; hasKey: boolean }>('ai:config'),
+    saveConfig: (patch: { baseUrl?: string; model?: string; apiKey?: string }) => call<void>('ai:saveConfig', patch),
+    chat: (history: { role: 'user' | 'assistant'; content: string }[]) => call<AiChatResult>('ai:chat', history),
+    confirm: (draftId: string) => call<{ id: number; num: number; period: string }>('ai:confirm', draftId),
+    discard: (draftId: string) => call<void>('ai:discard', draftId)
   },
   app: {
     saveFile: (name: string, data: Uint8Array, filters?: { name: string; extensions: string[] }[]) => call<string | null>('app:saveFile', name, data, filters),

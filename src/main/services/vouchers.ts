@@ -16,7 +16,7 @@ export function nextVoucherNum(period: string, word = '记'): number {
   return (db.scalar<number>('SELECT COALESCE(MAX(num),0)+1 FROM voucher WHERE period=? AND word=?', [period, word]) ?? 1)
 }
 
-function validate(v: Voucher): VoucherLine[] {
+export function validateVoucher(v: Voucher): VoucherLine[] {
   const db = requireDb()
   if (!/^\d{4}-\d{2}-\d{2}$/.test(v.date)) throw new Error('日期格式错误')
   const start = db.getMeta('start_period')
@@ -52,7 +52,7 @@ function validate(v: Voucher): VoucherLine[] {
 
 export function saveVoucher(v: Voucher): { id: number; num: number } {
   const db = requireDb()
-  const lines = validate(v)
+  const lines = validateVoucher(v)
   const period = periodOf(v.date)
   if (isPeriodClosed(period)) throw new Error(`${period} 期间已结账，不能新增或修改凭证`)
   const word = v.word || '记'

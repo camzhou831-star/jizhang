@@ -7,6 +7,7 @@ import * as vouchers from './services/vouchers'
 import * as ledger from './services/ledger'
 import * as reports from './services/reports'
 import * as closing from './services/closing'
+import * as assistant from './services/assistant'
 
 type Handler = (...args: any[]) => unknown
 
@@ -69,6 +70,12 @@ const handlers: Record<string, Handler> = {
   'closing:carry': (period, maker) => closing.carryForwardPL(period, maker),
   'closing:close': (period) => closing.closePeriod(period),
   'closing:reopen': (period) => closing.reopenPeriod(period),
+  // AI 助手
+  'ai:config': () => assistant.publicConfig(),
+  'ai:saveConfig': (patch) => assistant.saveConfig(patch ?? {}),
+  'ai:chat': (history) => assistant.chat(history ?? []),
+  'ai:confirm': (draftId) => assistant.confirmDraft(draftId),
+  'ai:discard': (draftId) => assistant.discardDraft(draftId),
   // 通用
   'app:saveFile': async (defaultName: string, data: ArrayBuffer | Uint8Array, filters?: { name: string; extensions: string[] }[]) => {
     const r = await dialog.showSaveDialog({ defaultPath: defaultName, filters: filters ?? [{ name: 'Excel', extensions: ['xlsx'] }] })

@@ -15,6 +15,7 @@ export const router = createRouter({
     { path: '/balance', component: () => import('./views/TrialBalance.vue'), meta: { title: '科目余额表' } },
     { path: '/ledger', component: () => import('./views/Ledger.vue'), meta: { title: '总账 / 明细账' } },
     { path: '/reports', component: () => import('./views/Reports.vue'), meta: { title: '财务报表' } },
+    { path: '/assistant', component: () => import('./views/Assistant.vue'), meta: { title: 'AI 助手' } },
     { path: '/closing', component: () => import('./views/Closing.vue'), meta: { title: '期末处理' } }
   ]
 })
